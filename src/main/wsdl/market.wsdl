@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="Market"
+                  xmlns:market="http://market.gwallet.fr"
+                  targetNamespace="http://market.gwallet.fr"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://market.gwallet.fr">
+            <xsd:element name="carrotRequest" type="market:CarrotRequest"></xsd:element>
+            <xsd:complexType name="CarrotRequest">
+                <xsd:sequence>
+                    <xsd:element name="carrotQuery" minOccurs="1" maxOccurs="1" nillable="false" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="carrotResponse" type="market:CarrotResponse"></xsd:element>
+            <xsd:complexType name="CarrotResponse">
+                <xsd:sequence>
+                    <xsd:element name="carrotAnswer" minOccurs="1" maxOccurs="1" nillable="false" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="potatoRequest" type="market:PotatoRequest"></xsd:element>
+            <xsd:complexType name="PotatoRequest">
+                <xsd:sequence>
+                    <xsd:element name="potatoQuery" minOccurs="1" maxOccurs="1" nillable="false" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="potatoResponse" type="market:PotatoResponse"></xsd:element>
+            <xsd:complexType name="PotatoResponse">
+                <xsd:sequence>
+                    <xsd:element name="potatoAnswer" minOccurs="1" maxOccurs="1" nillable="false" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="carrotRequest">
+        <wsdl:part name="carrotRequest" element="market:carrotRequest"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="carrotResponse">
+        <wsdl:part name="carrotResponse" element="market:carrotResponse"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="potatoRequest">
+        <wsdl:part name="potatoRequest" element="market:potatoRequest"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="potatoResponse">
+        <wsdl:part name="potatoResponse" element="market:potatoResponse"></wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="Market">
+        <wsdl:operation name="carrot">
+            <wsdl:input message="market:carrotRequest"></wsdl:input>
+            <wsdl:output message="market:carrotResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="potato">
+            <wsdl:input message="market:potatoRequest"></wsdl:input>
+            <wsdl:output message="market:potatoResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="MarketBinding"
+                  type="market:Market">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="carrot">
+            <soap:operation soapAction="http://market.gwallet.fr/carrot"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="potato">
+            <soap:operation soapAction="http://market.gwallet.fr/potato"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="MarketService">
+        <wsdl:port name="MarketPort" binding="market:MarketBinding">
+            <soap:address location="http://localhost/marketService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
