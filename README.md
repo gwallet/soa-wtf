@@ -44,7 +44,7 @@ Why ?
 Because, when debugging an application in production mode, we saw bad behavior, quite impossible behavior.
 
 Showing the log, messages seems to be inconcistant. Request of type A is answered with type B.
-Today, we can not explain why the answered was randomly delivered, but when we force by mocking, we was very confuse about the fact that the WS client stack never complains.
+Today, we can not explain why the answered was randomly delivered, but when we force by mocking, we were very confused about the fact that the WS client stack never complains.
 
 And now ?
 ---------
